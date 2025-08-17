@@ -1586,7 +1586,12 @@ body.dark-mode .map-container:hover iframe {
                 }
                 
                 if (!empty($voucherList)) :
-                    foreach ($voucherList as $voucher) : ?>
+                    foreach ($voucherList as $voucher) : 
+                        // Calculate expiry status first
+                        $now = strtotime(date('Y-m-d H:i:s'));
+                        $end = strtotime($voucher['NgayKetThuc']);
+                        $diff = $end - $now;
+                        ?>
                         <div class="discount-card <?= ($diff < 0) ? 'expired' : '' ?>">
                             <div class="discount-icon">
                                 <i class="fa-solid fa-gift"></i>
@@ -1601,9 +1606,6 @@ body.dark-mode .map-container:hover iframe {
                             </div>
                             <span class="sale-tag <?= ($diff < 0) ? 'expired' : '' ?>">
                                 <?php
-                                $now = strtotime(date('Y-m-d H:i:s'));
-                                $end = strtotime($voucher['NgayKetThuc']);
-                                $diff = $end - $now;
                                 if ($diff < 0) echo 'Hết hạn';
                                 elseif ($diff < 86400) echo 'Sắp hết mã';
                                 else echo 'Còn hạn';
@@ -1611,10 +1613,6 @@ body.dark-mode .map-container:hover iframe {
                             </span>
                         </div>
                 <?php 
-                    // Calculate diff for styling
-                    $now = strtotime(date('Y-m-d H:i:s'));
-                    $end = strtotime($voucher['NgayKetThuc']);
-                    $diff = $end - $now;
                 endforeach;
                 else: ?>
                     <!-- Nếu không có voucher, giữ nguyên HTML cũ -->
@@ -1660,42 +1658,42 @@ body.dark-mode .map-container:hover iframe {
 
                     <div class="special-card">
                         <div class="special-icon">
-                            <i class="fa-solid fa-car"></i>
+                            <i class="fa-solid fa-user"></i>
                         </div>
                         <div class="special-content">
-                            <h4>Giảm 30% thuê xe</h4>
+                            <h4>8% giảm giá hoạt động Du lịch</h4>
                             <p>Áp dụng cho lần đặt đầu tiên trên web GO & CHILL</p>
                             <div class="discount-code">
-                                <span>THUEXE30OFF</span>
-                                <button class="copy-btn" data-code="THUEXE30OFF">Copy</button>
+                                <span>KSMEGAFS66VN</span>
+                                <button class="copy-btn" data-code="KSMEGAFS66VN">Copy</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="special-card">
                         <div class="special-icon">
-                            <i class="fa-solid fa-utensils"></i>
+                            <i class="fa-solid fa-user"></i>
                         </div>
                         <div class="special-content">
-                            <h4>Giảm 25% nhà hàng</h4>
+                            <h4>8% giảm giá hoạt động Du lịch</h4>
                             <p>Áp dụng cho lần đặt đầu tiên trên web GO & CHILL</p>
                             <div class="discount-code">
-                                <span>NHAHANG25</span>
-                                <button class="copy-btn" data-code="NHAHANG25">Copy</button>
+                                <span>KSMEGAFS66VN</span>
+                                <button class="copy-btn" data-code="KSMEGAFS66VN">Copy</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="special-card">
                         <div class="special-icon">
-                            <i class="fa-solid fa-ticket"></i>
+                            <i class="fa-solid fa-user"></i>
                         </div>
                         <div class="special-content">
-                            <h4>Giảm 40% vé tham quan</h4>
+                            <h4>8% giảm giá hoạt động Du lịch</h4>
                             <p>Áp dụng cho lần đặt đầu tiên trên web GO & CHILL</p>
                             <div class="discount-code">
-                                <span>VETHAMQUAN40</span>
-                                <button class="copy-btn" data-code="VETHAMQUAN40">Copy</button>
+                                <span>KSMEGAFS66VN</span>
+                                <button class="copy-btn" data-code="KSMEGAFS66VN">Copy</button>
                             </div>
                         </div>
                     </div>
@@ -1703,47 +1701,17 @@ body.dark-mode .map-container:hover iframe {
 
                     <div class="special-card">
                         <div class="special-icon">
-                            <i class="fa-solid fa-ship"></i>
+                            <i class="fa-solid fa-user"></i>
                         </div>
                         <div class="special-content">
-                            <h4>Giảm 35% du thuyền</h4>
+                            <h4>8% giảm giá hoạt động Du lịch</h4>
                             <p>Áp dụng cho lần đặt đầu tiên trên web GO & CHILL</p>
                             <div class="discount-code">
-                                <span>DUTHUYEN35</span>
-                                <button class="copy-btn" data-code="DUTHUYEN35">Copy</button>
+                                <span>KSMEGAFS66VN</span>
+                                <button class="copy-btn" data-code="KSMEGAFS66VN">Copy</button>
                             </div>
                         </div>
                     </div>
-
-                    <div class="special-card">
-                        <div class="special-icon">
-                            <i class="fa-solid fa-camera"></i>
-                        </div>
-                        <div class="special-content">
-                            <h4>Giảm 20% dịch vụ chụp ảnh</h4>
-                            <p>Áp dụng cho lần đặt đầu tiên trên web GO & CHILL</p>
-                            <div class="discount-code">
-                                <span>CHUPANH20</span>
-                                <button class="copy-btn" data-code="CHUPANH20">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                    <div class="special-card">
-                        <div class="special-icon">
-                            <i class="fa-solid fa-spa"></i>
-                        </div>
-                        <div class="special-content">
-                            <h4>Giảm 45% spa & massage</h4>
-                            <p>Áp dụng cho lần đặt đầu tiên trên web GO & CHILL</p>
-                            <div class="discount-code">
-                                <span>SPAMASSAGE45</span>
-                                <button class="copy-btn" data-code="SPAMASSAGE45">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-
 
 
                 </div>

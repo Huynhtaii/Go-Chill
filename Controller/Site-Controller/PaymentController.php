@@ -104,7 +104,9 @@ class PaymentController {
         }
 
         // Tính toán giá ban đầu và khởi tạo biến giảm giá
-        $originalPrice = $tour['GiaTour'] * $data['quantity'];
+        // Sử dụng giá sale nếu có, nếu không dùng giá gốc
+        $basePrice = $tour['GiaTourSale'] ?: $tour['GiaTour'];
+        $originalPrice = $basePrice * $data['quantity'];
         $discount = 0;
         $voucherId = null;
 
@@ -137,8 +139,8 @@ class PaymentController {
             'MaTour' => $data['tourId'],                // ID tour
             'MaVoucher' => $voucherId,                  // ID voucher (có thể null)
             'SoLuongNguoi' => $data['quantity'],        // Số lượng người
-            'TongTien' => $originalPrice,               // Tổng tiền gốc
-            'GiamGia' => $discount,                     // Số tiền giảm giá
+            'TongTien' => $originalPrice,               // Tổng tiền sau sale (giá cơ sở)
+            'GiamGia' => $discount,                     // Số tiền giảm giá từ voucher
             'SoTienThanhToan' => $finalPrice,           // Số tiền cuối cùng
             'PhuongThucThanhToan' => $data['paymentMethod'], // Phương thức thanh toán
             'TrangThai' => 'Chờ duyệt',                 // Trạng thái ban đầu

@@ -283,10 +283,7 @@ $currentUser = AuthController::getCurrentUser();
     }
 </style>
 
-<!-- Banner trắng xanh -->
-<div class="banner-main" style="margin: 10px auto 0 auto; max-width: 1900px;">
-    <img src="public/img/img_white_and_blue_modern.png" alt="Go & Chill Banner" style="width:100%; border-radius:16px; display:block;">
-</div>
+
 
 <main>
     <!-- Breadcrumb Navigation -->
@@ -382,7 +379,7 @@ $currentUser = AuthController::getCurrentUser();
                         <div class="payment-form-summary">
                             <div class="summary-row">
                                 <span>Giá trị hóa đơn</span>
-                                <span id="orderValue"><?php echo number_format($originalPrice); ?>đ</span>
+                                <span id="orderValue"><?php echo number_format($salePrice); ?>đ</span>
                             </div>
                             <div class="summary-row">
                                 <span>Tổng cộng Voucher giảm giá</span>
@@ -467,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const selectedAmountInput = document.getElementById('selectedAmountInput');
     
     // Lấy giá tour từ PHP
-    const originalPrice = <?php echo $originalPrice; ?>;
+    const salePrice = <?php echo $salePrice; ?>;
     const orderValueSpan = document.getElementById('orderValue');
     const voucherValueSpan = document.getElementById('voucherValue');
     const totalValueSpan = document.getElementById('totalValue');
@@ -550,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateVoucherAndTotal() {
         const currentQuantity = parseInt(quantity.value) || 1;
-        const currentPrice = originalPrice * currentQuantity;
+        const currentPrice = salePrice * currentQuantity;
         let discount = 0;
         let voucherText = '0đ';
         let totalText = '';

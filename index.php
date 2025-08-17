@@ -1,3 +1,3 @@
 <?php
-echo "Welcome to Go-Chill!<br>";
-?>
+// Trang admin chính
+require_once 'views/Admin/index.php';

@@ -1,0 +1,41 @@
+<?php 
+// Header đã được include trong index.php chính
+?>
+
+<div class="content">
+    <div class="header-trang">
+        <h2>Chỉnh Sửa Danh Mục Tour</h2>
+        <a href="index.php?controller=category&action=index" class="add-btn">← Quay lại</a>
+    </div>
+
+    <div class="form-container">
+        <form method="POST" action="index.php?controller=category&action=edit&id=<?php echo $category['ID']; ?>">
+            <input type="hidden" name="ID" value="<?php echo $category['ID']; ?>">
+            
+            <div class="form-group">
+                <label for="TenDanhMuc">Tên Danh Mục *</label>
+                <input type="text" id="TenDanhMuc" name="TenDanhMuc" required 
+                       value="<?php echo htmlspecialchars($category['TenDanhMuc']); ?>"
+                       placeholder="Ví dụ: Tour Trong Nước, Tour Nước Ngoài">
+            </div>
+
+            <div class="form-group">
+                <label for="TrangThai">Trạng Thái</label>
+                <select id="TrangThai" name="TrangThai">
+                    <option value="Hoạt động" <?php echo ($category['TrangThai'] == 'Hoạt động') ? 'selected' : ''; ?>>Hoạt động</option>
+                    <option value="Tạm dừng" <?php echo ($category['TrangThai'] == 'Tạm dừng') ? 'selected' : ''; ?>>Tạm dừng</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Cập Nhật Danh Mục</button>
+                <a href="index.php?controller=category&action=index" class="btn-cancel">Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<?php 
+// Footer đã được include trong index.php chính
+?>
+
